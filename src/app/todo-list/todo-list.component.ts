@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { todoliste } from '../mock-todoliste';
 import { TodoListService } from '../todo-list.service';
 
 @Component({
@@ -8,9 +9,10 @@ import { TodoListService } from '../todo-list.service';
 })
 export class TodoListComponent implements OnInit {
 
-  constructor(private TodoListService: TodoListService){}
+  constructor(private todoListService: TodoListService){}
 
   todolist: String [] = [];
+  input: String = '';
 
   
   ngOnInit(): void{
@@ -18,9 +20,20 @@ export class TodoListComponent implements OnInit {
   }
 
   getToDoList() {
-    this.TodoListService.getToDoList()
+    this.todoListService.getToDoList()
     .subscribe(todoliste => this.todolist = todoliste);
   }
+
+  setInput(inputtext: String){
+    this.input = inputtext;
+    console.log(this.todolist);
+  }
+
+  addToDoList(inputext: String){
+    this.todoListService.addToDoList(inputext);
+    this.getToDoList();
+  }
+
 
 
 }

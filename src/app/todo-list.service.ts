@@ -6,11 +6,18 @@ import { todoliste } from './mock-todoliste';
   providedIn: 'root'
 })
 export class TodoListService {
+  static addToDoList(inputext: String) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor() { }
 
   getToDoList(): Observable<String[]>{
     const  list = of(todoliste);
     return list;
+  }
+
+  addToDoList(inputext: String){
+    todoliste.push(inputext);
   }
 }
