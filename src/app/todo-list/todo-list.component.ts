@@ -13,7 +13,6 @@ export class TodoListComponent implements OnInit {
 
   todolist: String [] = [];
   input: String = '';
-
   
   ngOnInit(): void{
     this.getToDoList();
@@ -29,8 +28,15 @@ export class TodoListComponent implements OnInit {
     console.log(this.todolist);
   }
 
-  addToDoList(inputext: String){
-    this.todoListService.addToDoList(inputext);
+  removeToDoList(index: number){
+    this.todoListService.removeToDoList(index);
+    console.log(todoliste);
+    console.log(index);
+    this.getToDoList();
+  }
+
+  addToDoList(inputtext: String){
+    this.todoListService.addToDoList(inputtext);
     this.getToDoList();
   }
 

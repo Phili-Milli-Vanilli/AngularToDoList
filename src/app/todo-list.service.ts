@@ -17,7 +17,11 @@ export class TodoListService {
     return list;
   }
 
-  addToDoList(inputext: String){
-    todoliste.push(inputext);
+  removeToDoList(index: number){
+    todoliste.splice(index, 1);
+  }
+
+  addToDoList(inputtext: String){
+    todoliste.push(inputtext);
   }
 }
