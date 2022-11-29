@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { empty, Observable, of } from 'rxjs';
 import { todoliste } from './mock-todoliste';
 
 @Injectable({
@@ -23,5 +23,9 @@ export class TodoListService {
 
   addToDoList(inputtext: String){
     todoliste.push(inputtext);
+  }
+
+  clearList(){
+    todoliste.splice(0);
   }
 }

@@ -40,6 +40,10 @@ export class TodoListComponent implements OnInit {
     this.getToDoList();
   }
 
+  clearList(){
+    this.todoListService.clearList();
+    this.getToDoList();
+  }
 
 
 }

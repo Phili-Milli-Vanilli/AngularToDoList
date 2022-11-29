@@ -4,6 +4,9 @@ button{
     color: white;
     background-color: darkcyan;
     margin-left: 5px;
+    padding: 10px 5px 10px 5px;
+    border-radius: 6px;
+    width: 100px;
 }
 
 button:hover{
@@ -16,11 +19,13 @@ input{
     margin-left: 50px;
     font-family: 'Courier New', Courier, monospace;
     color: dimgray;   
-    width: 500px;
+    width: 350px;
+    height: 20px;
 }
 
 li{
     margin-top: 10px;
     margin-left: 80px;
     font-family: 'Courier New', Courier, monospace;
+    list-style-type:square
 }
