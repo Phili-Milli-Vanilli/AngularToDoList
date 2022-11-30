@@ -12,20 +12,20 @@ export class TodoListService {
 
   constructor() { }
 
-  getToDoList(): Observable<String[]>{
-    const  list = of(todoliste);
-    return list;
-  }
+//   getToDoList(): Observable<String[]>{
+//     const  list = of(todoliste);
+//    return list;
+//   }
 
-  removeToDoList(index: number){
-    todoliste.splice(index, 1);
-  }
+//   removeToDoList(index: number){
+//     todoliste.splice(index, 1);
+//   }
 
-  addToDoList(inputtext: String){
-    todoliste.push(inputtext);
-  }
+//   addToDoList(inputtext: String){
+//    todoliste.push(inputtext);
+//   }
 
-  clearList(){
-    todoliste.splice(0);
-  }
-}
+//   clearList(){
+//    todoliste.splice(0);
+//   }
+ }

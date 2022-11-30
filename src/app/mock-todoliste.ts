@@ -1,1 +1,3 @@
-export const todoliste: String[] = [];
+import { todo } from "./todo";
+
+export const todoliste: todo[] = [];

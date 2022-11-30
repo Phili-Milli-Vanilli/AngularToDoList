@@ -14,36 +14,34 @@ export class TodoListComponent implements OnInit {
   todolist: String [] = [];
   input: String = '';
   
-  ngOnInit(): void{
-    this.getToDoList();
-  }
+  ngOnInit(): void{}
 
-  getToDoList() {
-    this.todoListService.getToDoList()
-    .subscribe(todoliste => this.todolist = todoliste);
-  }
+  // getToDoList() {
+  //   this.todoListService.getToDoList()
+  //   .subscribe(todoliste => this.todolist = todoliste);
+  // }
 
-  setInput(inputtext: String){
-    this.input = inputtext;
-    console.log(this.todolist);
-  }
+  // setInput(inputtext: String){
+  //   this.input = inputtext;
+  //   console.log(this.todolist);
+  // }
 
-  removeToDoList(index: number){
-    this.todoListService.removeToDoList(index);
-    console.log(todoliste);
-    console.log(index);
-    this.getToDoList();
-  }
+  // removeToDoList(index: number){
+  //   this.todoListService.removeToDoList(index);
+  //   console.log(todoliste);
+  //   console.log(index);
+  //   this.getToDoList();
+  // }
 
-  addToDoList(inputtext: String){
-    this.todoListService.addToDoList(inputtext);
-    this.getToDoList();
-  }
+  // addToDoList(inputtext: String){
+  //   this.todoListService.addToDoList(inputtext);
+  //   this.getToDoList();
+  // }
 
-  clearList(){
-    this.todoListService.clearList();
-    this.getToDoList();
-  }
+  // clearList(){
+  //   this.todoListService.clearList();
+  //   this.getToDoList();
+  // }
 
 
 }
