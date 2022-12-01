@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { empty, Observable, of } from 'rxjs';
 import { todoliste } from './mock-todoliste';
+import { ToDo } from './todo';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +11,7 @@ export class TodoListService {
   static addToDoList(inputext: String) {
     throw new Error('Method not implemented.');
   }
-
-  constructor() { }
+  
 
 //   getToDoList(): Observable<String[]>{
 //     const  list = of(todoliste);
@@ -21,9 +22,10 @@ export class TodoListService {
 //     todoliste.splice(index, 1);
 //   }
 
-//   addToDoList(inputtext: String){
-//    todoliste.push(inputtext);
-//   }
+  addToDoList(item: ToDo){
+   todoliste.push(item);
+   console.log(todoliste);
+  }
 
 //   clearList(){
 //    todoliste.splice(0);

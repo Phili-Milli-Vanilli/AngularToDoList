@@ -1,3 +1,3 @@
-import { todo } from "./todo";
+import { ToDo } from "./todo";
 
-export const todoliste: todo[] = [];
+export const todoliste: ToDo[] = [];

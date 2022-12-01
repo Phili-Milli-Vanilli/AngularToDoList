@@ -1,14 +1,18 @@
-<p>add-todolist works!</p>
+<p>add-todolist works!{{todo.targetDate}}{{todo.targetDate}}</p>
 
 <div>
-    <input type="text" id="title" name="title" placeholder="Titel..." #title>
+    <input id="title" name="title" placeholder="Titel..." [(ngModel)]="todo.title">    
     <br>
-    <input type="text" id="description" name="description" placeholder="Beschreibung..." #description>
+    <input id="description" name="description" placeholder="Beschreibung..." [(ngModel)]="todo.description">
+    <br>
     
-    <input type="text" id="title" name="title" placeholder="Titel..." #title>
+    <label for="urgent">Dringend?</label>
+    <input type="checkbox" name="urgent" id="urgent" [(ngModel)]="todo.urgent">
+
+    <label for="important">Wichtig?</label>
+    <input type="checkbox" name="important" id="important" [(ngModel)]="todo.important">
+
+    <input type="date" name="targetDate" id="targetDate" [(ngModel)]="todo.targetDate">
     
-    <input type="checkbox" id="completed" name="completed" value=true>
-    <label for="completed">completed</label>
-    
-    <button type="button" value="Submit">Bestätigen</button>
+    <button type="button" (click)="addList()">Bestätigen</button>
 </div>
