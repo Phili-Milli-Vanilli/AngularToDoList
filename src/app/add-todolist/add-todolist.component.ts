@@ -4,6 +4,7 @@ import { todoliste } from '../mock-todoliste';
 import { Title } from '@angular/platform-browser';
 import { TodoListComponent } from '../todo-list/todo-list.component';
 import { TodoListService } from '../todo-list.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -14,7 +15,10 @@ import { TodoListService } from '../todo-list.service';
 
 export class AddTodolistComponent {
 
-  constructor(private toDolistSerive: TodoListService){}
+  constructor(
+    private toDolistSerive: TodoListService,
+    private location: Location
+    ){}
 
   ngOnInit(): void{}
 
@@ -31,6 +35,10 @@ export class AddTodolistComponent {
 
     //this.item = this.todo;
     this.toDolistSerive.addToDoList(this.todo);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   

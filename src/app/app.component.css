@@ -4,3 +4,25 @@ h1{
     font-family: 'Courier New', Courier, monospace;
     color: dimgrey;
 }
+
+
+nav a{
+    background-color: #e8e8e8;
+    color: #3d3d3d;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0.8rem;
+    margin-top: 1px;
+    border-radius: 15px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+nav a:hover{
+    background-color: grey;
+    color: white;
+}
+
+nav a:active{
+    background-color: black;
+    color: white;
+}

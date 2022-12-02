@@ -1,7 +1,9 @@
+<button type="button" (click)="goBack()">Zurück</button>
+
 <p>add-todolist works!{{todo.targetDate}}{{todo.targetDate}}</p>
 
 <div>
-    <input id="title" name="title" placeholder="Titel..." [(ngModel)]="todo.title">    
+    <input id="title" name="title" placeholder="Titel..." [(ngModel)]="todo.title" >    
     <br>
     <input id="description" name="description" placeholder="Beschreibung..." [(ngModel)]="todo.description">
     <br>
