@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { todoliste } from '../mock-todoliste';
+import { ToDo } from '../todo';
 import { TodoListService } from '../todo-list.service';
 
 @Component({
@@ -11,15 +12,26 @@ export class TodoListComponent implements OnInit {
 
   constructor(private todoListService: TodoListService){}
 
-  todolist: String [] = [];
+  todolist: ToDo [] = [];
   input: String = '';
   
-  ngOnInit(): void{}
+  ngOnInit(): void{
+    this.getToDoList();
+  }
 
-  // getToDoList() {
-  //   this.todoListService.getToDoList()
-  //   .subscribe(todoliste => this.todolist = todoliste);
-  // }
+  getToDoList() {
+    this.todoListService.getToDoList()
+    .subscribe(todoliste => this.todolist = todoliste);
+
+    // for(let i = 0; i < this.todolist.length; i++){
+    //   if(todoliste.at(i)?.completed == true){
+    //     this.todolist.at(i)?.completed. = 'Done!';
+    //   }
+    //   else{
+    //     console.log('Java ist besser');
+    //   }
+    // }
+  }
 
   // setInput(inputtext: String){
   //   this.input = inputtext;

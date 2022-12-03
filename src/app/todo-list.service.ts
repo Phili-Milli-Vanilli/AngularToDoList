@@ -11,23 +11,22 @@ export class TodoListService {
   static addToDoList(inputext: String) {
     throw new Error('Method not implemented.');
   }
-  
 
-//   getToDoList(): Observable<String[]>{
-//     const  list = of(todoliste);
-//    return list;
-//   }
 
-//   removeToDoList(index: number){
-//     todoliste.splice(index, 1);
-//   }
-
-  addToDoList(item: ToDo){
-   todoliste.push(item);
-   console.log(todoliste);
+  getToDoList(): Observable<ToDo[]> {
+    const list = of(todoliste);
+    return list;
   }
 
-//   clearList(){
-//    todoliste.splice(0);
-//   }
- }
+  //   removeToDoList(index: number){
+  //     todoliste.splice(index, 1);
+  //   }
+
+  addToDoList(item: ToDo) {
+    todoliste.push(item);
+  }
+
+  //   clearList(){
+  //    todoliste.splice(0);
+  //   }
+}

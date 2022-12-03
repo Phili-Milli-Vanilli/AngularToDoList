@@ -1,13 +1,15 @@
-<!-- <ul class="todo-list">
-    <input type="text" id="todo" name="todo" placeholder="Was musst Du erledigen?" #inputtext>
-    <button type="button" value="Submit">Submit</button>
-    <button type="button">Clear</button>
-    
+<ul>
+    <div class="list">
+        <li *ngFor="let todo of todolist">
+            <span class="title">{{todo.title}}</span>
 
-    <div>
-        <li *ngFor="let todo of todolist,let i=index">{{todo}}
-            <button type="button">Delete</button>
-            
+            <div class="scroller">
+                <span class="description">{{todo.description}}</span>
+                </div>
+            <p>Fertig? {{todo.completed}}</p>
+            <p>Dringend? {{todo.urgent}}</p>
+            <p>Wichtig? {{todo.important}}</p>
+            <p>Deadline: {{todo.targetDate}}</p>            
         </li>
     </div>
-</ul> -->
+</ul>

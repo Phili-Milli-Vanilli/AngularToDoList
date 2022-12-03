@@ -1,6 +1,4 @@
-
-
-button{
+button {
     color: white;
     background-color: darkcyan;
     margin-left: 5px;
@@ -9,23 +7,59 @@ button{
     width: 100px;
 }
 
-button:hover{
+button:hover {
 
     color: black;
     background-color: white;
 }
 
-input{
+input {
     margin-left: 50px;
     font-family: 'Courier New', Courier, monospace;
-    color: dimgray;   
+    color: dimgray;
     width: 350px;
     height: 20px;
 }
 
-li{
+li {
     margin-top: 10px;
     margin-left: 80px;
     font-family: 'Courier New', Courier, monospace;
-    list-style-type:square
+    list-style-type: square
+}
+
+.list {
+    font-family: 'Courier New', Courier, monospace;
+    color: dimgrey;
+    background-color: #e8e8e8;
+    font-size: xx-large;
+    padding: 10px;
+}
+
+.title {
+    font-family: 'Courier New', Courier, monospace;
+    color: dimgray;
+    font-weight: bold;
+}
+
+.scroller{
+    width: 1000px;
+    height: 100px;
+    overflow-y: auto;
+    scrollbar-color: dimgrey #e8e8e8;
+    scrollbar-width: thin;
+    border-style: solid;
+    border-color: dimgray;
+    border-radius: 10px;
+}
+
+.description span{
+    font-family: 'Courier New', Courier, monospace;
+    color: dimgray;
+    margin: 10px;
+    display: none;
+}
+
+.description::after{
+    content: '\0021';
 }

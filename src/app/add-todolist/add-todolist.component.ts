@@ -18,10 +18,12 @@ export class AddTodolistComponent {
   constructor(
     private toDolistSerive: TodoListService,
     private location: Location
-    ){}
+  ) { }
 
-  ngOnInit(): void{}
+  ngOnInit(): void { }
 
+
+  //input Objekt Initialisierung
   todo: ToDo = {
     title: '',
     description: '',
@@ -29,18 +31,32 @@ export class AddTodolistComponent {
     urgent: false,
     important: false,
     targetDate: 0,
-  }  
+  }
 
-  addList(){
 
-    //this.item = this.todo;
+  liste: ToDo[] = [];
+
+  addList() {
     this.toDolistSerive.addToDoList(this.todo);
+    this.resetToDo();
+    console.log(todoliste);
   }
 
   goBack(): void {
     this.location.back();
   }
 
-  
+  resetToDo(){
+    this.todo = {
+      title: '',
+      description: '',
+      completed: false,
+      urgent: false,
+      important: false,
+      targetDate: 0,
+    };
+  }
+
+
 }
 
