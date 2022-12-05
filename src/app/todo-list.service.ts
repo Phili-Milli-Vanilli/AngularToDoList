@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NumberValueAccessor } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { empty, Observable, of } from 'rxjs';
 import { todoliste } from './mock-todoliste';
@@ -18,12 +19,20 @@ export class TodoListService {
     return list;
   }
 
-  //   removeToDoList(index: number){
-  //     todoliste.splice(index, 1);
-  //   }
+  removeToDoList(index: number) {
+    todoliste.splice(index, 1);
+  }
 
   addToDoList(item: ToDo) {
     todoliste.push(item);
+  }
+
+  changeCompleted(index: number){
+    if(todoliste[index].completed === true){
+      todoliste[index].completed = false;
+    }else if(todoliste[index].completed === false){
+      todoliste[index].completed = true;
+    }
   }
 
   //   clearList(){

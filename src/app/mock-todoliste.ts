@@ -8,7 +8,47 @@ export const todoliste: ToDo[] = [
         completed: true,
         urgent: false,
         important: false,
-        targetDate: 22222020,
+        targetDate: 2500,
+      },
+      {
+        title: 'Phil',
+        description: 'Hallo Welt',
+        completed: true,
+        urgent: false,
+        important: false,
+        targetDate: 2800,
+      },
+      {
+        title: 'Phil',
+        description: 'Hallo Welt',
+        completed: true,
+        urgent: false,
+        important: false,
+        targetDate: 2400,
+      },
+      {
+        title: 'Phil',
+        description: 'Hallo Welt',
+        completed: true,
+        urgent: false,
+        important: false,
+        targetDate: 2700,
+      },
+      {
+        title: 'Phil',
+        description: 'Hallo Welt',
+        completed: true,
+        urgent: false,
+        important: false,
+        targetDate: 2300,
+      },
+      {
+        title: 'Phil',
+        description: 'Hallo Welt',
+        completed: true,
+        urgent: false,
+        important: false,
+        targetDate: 9000,
       }
 
 ];

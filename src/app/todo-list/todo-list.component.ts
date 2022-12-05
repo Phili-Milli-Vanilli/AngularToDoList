@@ -13,7 +13,6 @@ export class TodoListComponent implements OnInit {
   constructor(private todoListService: TodoListService){}
 
   todolist: ToDo [] = [];
-  input: String = '';
   
   ngOnInit(): void{
     this.getToDoList();
@@ -22,28 +21,22 @@ export class TodoListComponent implements OnInit {
   getToDoList() {
     this.todoListService.getToDoList()
     .subscribe(todoliste => this.todolist = todoliste);
-
-    // for(let i = 0; i < this.todolist.length; i++){
-    //   if(todoliste.at(i)?.completed == true){
-    //     this.todolist.at(i)?.completed. = 'Done!';
-    //   }
-    //   else{
-    //     console.log('Java ist besser');
-    //   }
-    // }
   }
+
+  changeCompleted(index: number){
+    this.todoListService.changeCompleted(index);
+  }
+
 
   // setInput(inputtext: String){
   //   this.input = inputtext;
   //   console.log(this.todolist);
   // }
 
-  // removeToDoList(index: number){
-  //   this.todoListService.removeToDoList(index);
-  //   console.log(todoliste);
-  //   console.log(index);
-  //   this.getToDoList();
-  // }
+  removeToDoList(index: number){
+    this.todoListService.removeToDoList(index);
+    this.getToDoList();
+  }
 
   // addToDoList(inputtext: String){
   //   this.todoListService.addToDoList(inputtext);

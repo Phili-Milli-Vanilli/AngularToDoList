@@ -1,16 +1,25 @@
-button {
-    color: white;
-    background-color: darkcyan;
+button{
+    background-color: #dc7d6f;
+    color: #3d3d3d;
+    padding: 0.8rem;
+    margin-top: 5px;
     margin-left: 5px;
-    padding: 10px 5px 10px 5px;
-    border-radius: 6px;
-    width: 100px;
+    border-radius: 15px;
+    display: inline-block;
+    text-decoration: none;
+    border-style: none;
 }
 
-button:hover {
+button:hover{
+    background-color: grey;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    color: black;
-    background-color: white;
+button:active{
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 input {
@@ -24,22 +33,22 @@ input {
 li {
     margin-top: 10px;
     margin-left: 80px;
-    font-family: 'Courier New', Courier, monospace;
-    list-style-type: square
+    list-style-type: none;
 }
 
 .list {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif;
     color: dimgrey;
     background-color: #e8e8e8;
-    font-size: xx-large;
-    padding: 10px;
+    font-size: larger;
+    border-radius: 10px;
 }
 
 .title {
     font-family: 'Courier New', Courier, monospace;
     color: dimgray;
     font-weight: bold;
+    font-size: xx-large;
 }
 
 .scroller{
@@ -53,13 +62,21 @@ li {
     border-radius: 10px;
 }
 
+.description{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+}
+
 .description span{
-    font-family: 'Courier New', Courier, monospace;
     color: dimgray;
     margin: 10px;
     display: none;
 }
 
-.description::after{
-    content: '\0021';
+.checked::after{
+    content: '\2705';
+}
+
+.crossed::after{
+    content: '\274C';
 }
