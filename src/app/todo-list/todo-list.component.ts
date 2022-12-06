@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { todoliste } from '../mock-todoliste';
 import { ToDo } from '../todo';
 import { TodoListService } from '../todo-list.service';
+import { AddTodolistComponent } from '../add-todolist/add-todolist.component';
 
 @Component({
   selector: 'app-todo-list',
@@ -10,7 +11,9 @@ import { TodoListService } from '../todo-list.service';
 })
 export class TodoListComponent implements OnInit {
 
-  constructor(private todoListService: TodoListService){}
+  constructor(
+    private todoListService: TodoListService,
+    ){}
 
   todolist: ToDo [] = [];
   
@@ -25,6 +28,14 @@ export class TodoListComponent implements OnInit {
 
   changeCompleted(index: number){
     this.todoListService.changeCompleted(index);
+  }
+
+  changeUrgent(index: number){
+    this.todoListService.changeUrgent(index);
+  }
+
+  changeImportant(index: number){
+    this.todoListService.changeImportant(index);
   }
 
 
@@ -48,5 +59,19 @@ export class TodoListComponent implements OnInit {
   //   this.getToDoList();
   // }
 
+  sortByDate(){
+    this.todoListService.sortByDate();
+  }
 
+  sortByCompleted(){
+    this.todoListService.sortByCompleted();
+  }
+
+  sortByUrgent(){
+    this.todoListService.sortByUrgent();
+  }
+
+  sortByImportant(){
+    this.todoListService.sortByImportant();
+  }
 }

@@ -1,10 +1,10 @@
-import { Component, inject, Injectable, InjectionToken } from '@angular/core';
+import { Component, Inject, Injectable, InjectionToken, OnInit } from '@angular/core';
 import { ToDo } from '../todo';
 import { todoliste } from '../mock-todoliste';
-import { Title } from '@angular/platform-browser';
-import { TodoListComponent } from '../todo-list/todo-list.component';
 import { TodoListService } from '../todo-list.service';
 import { Location } from '@angular/common';
+
+
 
 
 @Component({
@@ -13,11 +13,13 @@ import { Location } from '@angular/common';
   styleUrls: ['./add-todolist.component.css']
 })
 
-export class AddTodolistComponent {
+export class AddTodolistComponent implements OnInit{
 
   constructor(
+
     private toDolistSerive: TodoListService,
-    private location: Location
+    private location: Location,
+    
   ) { }
 
   ngOnInit(): void { }

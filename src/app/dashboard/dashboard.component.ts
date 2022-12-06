@@ -3,6 +3,7 @@ import { ToDo } from '../todo';
 import { TodoListService } from '../todo-list.service';
 import { todoliste } from '../mock-todoliste';
 import { EMPTY, empty, Observable, of } from 'rxjs';
+import { TemplateBindingParseResult } from '@angular/compiler';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,11 +17,10 @@ export class DashboardComponent implements OnInit {
 
   tempList: ToDo[] = [];
 
+  topList: ToDo[] = [];
+
   ngOnInit(): void {
-    this.getToDoList();
-    this.getSortedList();
-    console.log(this.tempList);
-    console.log(todoliste);
+    this.getTopToDo();
   }
 
   getToDoList() {
@@ -28,17 +28,31 @@ export class DashboardComponent implements OnInit {
       .subscribe((todoliste => this.tempList = todoliste));
   }
 
-  getSortedList(){
+  changeCompleted(index: number){
+    this.todoListService.changeCompleted(index);
+  }
+
+    removeToDoList(index: number) {
+      this.topList.splice(index, 1);
+    }
+
+  getTopToDo(){
+    this.topList = this.todoListService.getTopToDo()
+  }
+
+
+  sortByDate() {
     this.tempList.sort((n1, n2) => {
       if (n1.targetDate > n2.targetDate) {
         return 1;
       }
-  
+
       if (n1.targetDate < n2.targetDate) {
         return -1;
       }
-  
+
       return 0;
     })
   }
+
 }

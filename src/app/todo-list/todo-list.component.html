@@ -1,3 +1,10 @@
+
+<button type="button" (click)="sortByDate()">SortDate</button>
+<button type="button" (click)="sortByCompleted()">sortByCompleted</button>
+<button type="button" (click)="sortByUrgent()">sortByUrgent</button>
+<button type="button" (click)="sortByImportant()">sortByImportant</button>
+
+
 <ul>
     <div class="list">
         <li *ngFor="let todo of todolist; let i=index;">
@@ -10,21 +17,33 @@
                 <span class="description" *ngIf="todo.description === '' ">Beschreibung...</span>
             </div>
 
-            <span *ngIf="todo.completed === true" class="checked"> Fertig: </span>
-            <span *ngIf="todo.completed === false" class="crossed"> Fertig: </span>
+
+            <span *ngIf="todo.completed === true" class="checked">
+                <button type="button" class="boolean" (click)="changeCompleted(i)">Fertig:</button> 
+            </span>
+            <span *ngIf="todo.completed === false" class="crossed"> 
+                <button type="button" class="boolean" (click)="changeCompleted(i)">Fertig:</button> 
+            </span>
 
 
-            <span *ngIf="todo.urgent === true" class="checked"> Dringend: </span>
-            <span *ngIf="todo.urgent === false" class="crossed"> Dringend: </span>
+            <span *ngIf="todo.urgent === true" class="checked">
+                <button type="button" class="boolean" (click)="changeUrgent(i)">Dringend:</button>
+            </span>
+            <span *ngIf="todo.urgent === false" class="crossed">
+                <button type="button" class="boolean" (click)="changeUrgent(i)">Dringend:</button>
+            </span>
 
-            <span *ngIf="todo.important === true" class="checked"> Wichtig: </span>
-            <span *ngIf="todo.important === false" class="crossed"> Wichtig: </span>
+            <span *ngIf="todo.important === true" class="checked">
+                <button type="button" class="boolean" (click)="changeImportant(i)">Wichtig:</button>
+            </span>
+            <span *ngIf="todo.important === false" class="crossed">
+                <button type="button" class="boolean" (click)="changeImportant(i)">Wichtig:</button>
+            </span>
 
             Deadline: {{todo.targetDate}}
 
-            <button type="button" (click)="removeToDoList(i)">Löschen</button>
-
-            <button type="button" (click)="changeCompleted(i)">Erledigt</button>
+            <button type="button" class="loeschen" (click)="removeToDoList(i)">Löschen</button>
         </li>
     </div>
 </ul>
+
