@@ -16,10 +16,18 @@ export class TodoListComponent implements OnInit {
     ){}
 
   todolist: ToDo [] = [];
+  canEdit: Boolean = false;
   
   ngOnInit(): void{
     this.getToDoList();
   }
+
+  onEditClick(index: number, item: ToDo){
+    this.canEdit = !this.canEdit;
+    this.todoListService.setTitle(index, item);
+  }
+
+
 
   getToDoList() {
     this.todoListService.getToDoList()

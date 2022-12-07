@@ -13,6 +13,12 @@ export class TodoListService {
     throw new Error('Method not implemented.');
   }
 
+
+  setTitle(index: number, item: ToDo){
+    todoliste[index].title = item.title;
+  }
+
+
   getToDoList(): Observable<ToDo[]> {
     const list = of(todoliste);
     return list;

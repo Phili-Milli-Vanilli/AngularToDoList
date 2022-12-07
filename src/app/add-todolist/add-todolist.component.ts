@@ -38,6 +38,11 @@ export class AddTodolistComponent implements OnInit{
 
   liste: ToDo[] = [];
 
+
+  sayMessage(){
+    alert("zur Liste hinzugefügt!");
+  }
+
   addList() {
     this.toDolistSerive.addToDoList(this.todo);
     this.resetToDo();

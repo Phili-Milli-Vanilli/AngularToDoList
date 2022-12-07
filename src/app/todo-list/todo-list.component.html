@@ -1,4 +1,3 @@
-
 <button type="button" (click)="sortByDate()">SortDate</button>
 <button type="button" (click)="sortByCompleted()">sortByCompleted</button>
 <button type="button" (click)="sortByUrgent()">sortByUrgent</button>
@@ -9,8 +8,16 @@
     <div class="list">
         <li *ngFor="let todo of todolist; let i=index;">
 
-            <span class="title" *ngIf="todo.title !== '' ">{{todo.title}}</span>
-            <span class="title" *ngIf="todo.title === '' "> Titel...</span>
+
+
+
+            <button type="button" (click)="onEditClick(i, todo)">Titel bearbeiten</button>
+            <p [contentEditable]="canEdit">{{todo.title}}</p>
+
+
+            <span class=" title" *ngIf="todo.title === '' "> Titel...</span>
+
+
 
             <div class="scroller">
                 <span class="description" *ngIf="todo.description !== '' ">{{todo.description}}</span>
@@ -19,10 +26,10 @@
 
 
             <span *ngIf="todo.completed === true" class="checked">
-                <button type="button" class="boolean" (click)="changeCompleted(i)">Fertig:</button> 
+                <button type="button" class="boolean" (click)="changeCompleted(i)">Fertig:</button>
             </span>
-            <span *ngIf="todo.completed === false" class="crossed"> 
-                <button type="button" class="boolean" (click)="changeCompleted(i)">Fertig:</button> 
+            <span *ngIf="todo.completed === false" class="crossed">
+                <button type="button" class="boolean" (click)="changeCompleted(i)">Fertig:</button>
             </span>
 
 
@@ -46,4 +53,3 @@
         </li>
     </div>
 </ul>
-
