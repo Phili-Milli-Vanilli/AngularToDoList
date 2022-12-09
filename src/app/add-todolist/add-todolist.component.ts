@@ -13,13 +13,13 @@ import { Location } from '@angular/common';
   styleUrls: ['./add-todolist.component.css']
 })
 
-export class AddTodolistComponent implements OnInit{
+export class AddTodolistComponent implements OnInit {
 
   constructor(
 
     private toDolistSerive: TodoListService,
     private location: Location,
-    
+
   ) { }
 
   ngOnInit(): void { }
@@ -38,14 +38,10 @@ export class AddTodolistComponent implements OnInit{
 
   liste: ToDo[] = [];
 
-
-  sayMessage(){
-    alert("zur Liste hinzugefügt!");
-  }
-
-  addList() {
+  addToDoList() {
     this.toDolistSerive.addToDoList(this.todo);
     this.resetToDo();
+    alert("zur Liste hinzugefügt!");
     console.log(todoliste);
   }
 
@@ -53,7 +49,7 @@ export class AddTodolistComponent implements OnInit{
     this.location.back();
   }
 
-  resetToDo(){
+  resetToDo() {
     this.todo = {
       title: '',
       description: '',
@@ -63,7 +59,5 @@ export class AddTodolistComponent implements OnInit{
       targetDate: 0,
     };
   }
-
-
 }
 

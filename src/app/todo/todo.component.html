@@ -1,0 +1,43 @@
+
+
+<!-- <button type="button" (click)="onEditClick(i, todo)">Titel bearbeiten</button>
+            <p [contentEditable]="canEdit">{{todo.title}}</p> -->
+
+            <div class="title">
+                <span class="title" *ngIf="todo.title!== '' ">{{todo.title}}</span>
+                <span class=" title" *ngIf="todo.title === '' "> Titel...</span>
+            </div>
+
+
+
+            <div class="scroller">
+                <span class="description" *ngIf="todo.description !== '' ">{{todo.description}}</span>
+                <span class="description" *ngIf="todo.description === '' ">Beschreibung...</span>
+            </div>
+
+
+            <span *ngIf="todo.completed === true" class="checked">
+                <button type="button" class="boolean" (click)="todo.completed=!todo.completed">Fertig:</button>
+            </span>
+            <span *ngIf="todo.completed === false" class="crossed">
+                <button type="button" class="boolean" (click)="todo.completed=!todo.completed">Fertig:</button>
+            </span>
+
+
+            <span *ngIf="todo.urgent === true" class="checked">
+                <button type="button" class="boolean" (click)="todo.urgent=!todo.urgent">Dringend:</button>
+            </span>
+            <span *ngIf="todo.urgent === false" class="crossed">
+                <button type="button" class="boolean" (click)="todo.urgent=!todo.urgent">Dringend:</button>
+            </span>
+
+            <span *ngIf="todo.important === true" class="checked">
+                <button type="button" class="boolean" (click)="todo.important=!todo.important">Wichtig:</button>
+            </span>
+            <span *ngIf="todo.important === false" class="crossed">
+                <button type="button" class="boolean" (click)="todo.important=!todo.important">Wichtig:</button>
+            </span>
+
+            Deadline: {{todo.targetDate}}
+
+            <button type="button" class="loeschen" (click)="removeToDoList(index)">Löschen</button>

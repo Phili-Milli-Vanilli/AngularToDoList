@@ -1,30 +1,7 @@
 <ul>
     <div class="list">
         <li *ngFor="let todo of topList; let i = index">
-
-            <span class="title" *ngIf="todo.title !== '' ">{{todo.title}}</span>
-            <span class="title" *ngIf="todo.title === '' "> Titel...</span>
-
-            <div class="scroller">
-                <span class="description" *ngIf="todo.description !== '' ">{{todo.description}}</span>
-                <span class="description" *ngIf="todo.description === '' ">Beschreibung...</span>
-            </div>
-
-            <span *ngIf="todo.completed === true" class="checked"> Fertig: </span>
-            <span *ngIf="todo.completed === false" class="crossed"> Fertig: </span>
-
-
-            <span *ngIf="todo.urgent === true" class="checked"> Dringend: </span>
-            <span *ngIf="todo.urgent === false" class="crossed"> Dringend: </span>
-
-            <span *ngIf="todo.important === true" class="checked"> Wichtig: </span>
-            <span *ngIf="todo.important === false" class="crossed"> Wichtig: </span>
-
-            Deadline: {{todo.targetDate}}
-
-            <button type="button" (click)="removeToDoList(i)">Löschen</button>
-
-            <button type="button" (click)="changeCompleted(i)">Erledigt</button>
+            <app-todo [todo]="todo" [index]="i"></app-todo>
         </li>
     </div>
 </ul>

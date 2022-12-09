@@ -28,31 +28,11 @@ export class DashboardComponent implements OnInit {
       .subscribe((todoliste => this.tempList = todoliste));
   }
 
-  changeCompleted(index: number){
-    this.todoListService.changeCompleted(index);
+  removeToDoList(index: number) {
+    this.topList.splice(index, 1);
   }
 
-    removeToDoList(index: number) {
-      this.topList.splice(index, 1);
-    }
-
-  getTopToDo(){
+  getTopToDo() {
     this.topList = this.todoListService.getTopToDo()
   }
-
-
-  sortByDate() {
-    this.tempList.sort((n1, n2) => {
-      if (n1.targetDate > n2.targetDate) {
-        return 1;
-      }
-
-      if (n1.targetDate < n2.targetDate) {
-        return -1;
-      }
-
-      return 0;
-    })
-  }
-
 }

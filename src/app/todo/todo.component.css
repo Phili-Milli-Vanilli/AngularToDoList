@@ -1,0 +1,147 @@
+button{
+    background-color: #f5d598       ;
+    color: #3d3d3d;
+    padding: 0.8rem;
+    margin-top: 5px;
+    margin-left: 5px;
+    border-radius: 15px;
+    display: inline-block;
+    text-decoration: none;
+    border-style: none;
+    font-size: large;
+}
+
+button:hover{
+    background-color: grey;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button:active{
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.boolean{
+    background-color: #e8e8e8;
+    color: #3d3d3d;
+    padding: 0.8rem;
+    margin-top: 5px;
+    margin-left: 5px;
+    border-radius: 15px;
+    display: inline-block;
+    text-decoration: none;
+    border-style: none;
+    font-size: large;
+}
+
+.loeschen{
+    background-color: #ed8d8d;
+    color: #3d3d3d;
+    padding: 0.8rem;
+    margin-top: 5px;
+    margin-left: 5px;
+    border-radius: 15px;
+    display: inline-block;
+    text-decoration: none;
+    border-style: none;
+    font-size: large;
+}
+
+.loeschen:hover{
+    background-color: grey;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.loeschen:active{
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.boolean{
+    background-color: #e8e8e8;
+    color: #3d3d3d;
+    padding: 0.8rem;
+    margin-top: 5px;
+    margin-left: 5px;
+    border-radius: 15px;
+    display: inline-block;
+    text-decoration: none;
+    border-style: none;
+    font-size: large;
+}
+
+.boolean:hover{
+    background-color: grey;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.boolean:active{
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+input {
+    margin-left: 50px;
+    font-family: 'Courier New', Courier, monospace;
+    color: dimgray;
+    width: 350px;
+    height: 20px;
+}
+
+li {
+    margin-top: 10px;
+    margin-left: 80px;
+    list-style-type: none;
+}
+
+.list {
+    font-family: Arial, Helvetica, sans-serif;
+    color: dimgrey;
+    background-color: #e8e8e8;
+    font-size: larger;
+    border-radius: 10px;
+}
+
+.title {
+    font-family: Arial, Helvetica, sans-serif;
+    color: dimgray;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.scroller{
+    width: 1000px;
+    height: 100px;
+    overflow-y: auto;
+    scrollbar-color: dimgrey #e8e8e8;
+    scrollbar-width: thin;
+    border-style: solid;
+    border-color: dimgray;
+    border-radius: 10px;
+}
+
+.description{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+}
+
+.description span{
+    color: dimgray;
+    margin: 10px;
+    display: none;
+}
+
+.checked::after{
+    content: '\2705';
+}
+
+.crossed::after{
+    content: '\274C';
+}

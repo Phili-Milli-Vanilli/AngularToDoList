@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { todoliste } from '../mock-todoliste';
 import { ToDo } from '../todo';
 import { TodoListService } from '../todo-list.service';
@@ -11,12 +11,14 @@ import { AddTodolistComponent } from '../add-todolist/add-todolist.component';
 })
 export class TodoListComponent implements OnInit {
 
+
   constructor(
     private todoListService: TodoListService,
     ){}
 
   todolist: ToDo [] = [];
   canEdit: Boolean = false;
+
   
   ngOnInit(): void{
     this.getToDoList();
@@ -27,25 +29,10 @@ export class TodoListComponent implements OnInit {
     this.todoListService.setTitle(index, item);
   }
 
-
-
   getToDoList() {
     this.todoListService.getToDoList()
     .subscribe(todoliste => this.todolist = todoliste);
   }
-
-  changeCompleted(index: number){
-    this.todoListService.changeCompleted(index);
-  }
-
-  changeUrgent(index: number){
-    this.todoListService.changeUrgent(index);
-  }
-
-  changeImportant(index: number){
-    this.todoListService.changeImportant(index);
-  }
-
 
   // setInput(inputtext: String){
   //   this.input = inputtext;

@@ -14,7 +14,7 @@ export class TodoListService {
   }
 
 
-  setTitle(index: number, item: ToDo){
+  setTitle(index: number, item: ToDo) {
     todoliste[index].title = item.title;
   }
 
@@ -56,68 +56,44 @@ export class TodoListService {
   }
 
 
-  changeCompleted(index: number){
-    if(todoliste[index].completed === true){
-      todoliste[index].completed = false;
-    }else if(todoliste[index].completed === false){
-      todoliste[index].completed = true;
-    }
-  }
-
-  changeUrgent(index: number){
-    if(todoliste[index].urgent === true){
-      todoliste[index].urgent = false;
-    }else if(todoliste[index].urgent === false){
-      todoliste[index].urgent = true;
-    }
-  }
-
-  changeImportant(index: number){
-    if(todoliste[index].important === true){
-      todoliste[index].important = false;
-    }else if(todoliste[index].important === false){
-      todoliste[index].important = true;
-    }
-  }
-
-  sortByDate(){
+  sortByDate() {
     todoliste.sort((n1, n2) => {
       if (n1.targetDate > n2.targetDate) {
         return 1;
       }
-  
+
       if (n1.targetDate < n2.targetDate) {
         return -1;
       }
-  
+
       return 0;
     })
   }
 
-  sortByCompleted(){
+  sortByCompleted() {
     todoliste.sort((n1, n2) => {
       if (n1.completed < n2.completed) {
         return 1;
       }
-  
+
       if (n1.completed > n2.completed) {
         return -1;
       }
-  
+
       return 0;
     })
   }
 
-  sortByUrgent(){
+  sortByUrgent() {
     todoliste.sort((n1, n2) => {
       if (n1.urgent < n2.urgent) {
         return 1;
       }
-  
+
       if (n1.urgent > n2.urgent) {
         return -1;
       }
-  
+
       return 0;
     })
   }
@@ -127,11 +103,11 @@ export class TodoListService {
       if (n1.important < n2.important) {
         return 1;
       }
-  
+
       if (n1.important > n2.important) {
         return -1;
       }
-  
+
       return 0;
     })
   }
