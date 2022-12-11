@@ -1,8 +1,10 @@
-<button type="button" (click)="sortByDate()">SortDate</button>
-<button type="button" (click)="sortByCompleted()">sortByCompleted</button>
-<button type="button" (click)="sortByUrgent()">sortByUrgent</button>
-<button type="button" (click)="sortByImportant()">sortByImportant</button>
 
+<div class="button">
+    <button type="button" (click)="sortByDate()">SortDate</button>
+    <button type="button" (click)="sortByCompleted()">sortByCompleted</button>
+    <button type="button" (click)="sortByUrgent()">sortByUrgent</button>
+    <button type="button" (click)="sortByImportant()">sortByImportant</button>
+</div>
 
 <ul>
     <div class="list">
@@ -10,7 +12,7 @@
 
             <app-todo [todo]="todo" [index]="i"></app-todo>
 
-            
+
         </li>
     </div>
 </ul>

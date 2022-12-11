@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { NumberValueAccessor } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { empty, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { todoliste } from './mock-todoliste';
 import { ToDo } from './todo';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,25 @@ export class TodoListService {
     throw new Error('Method not implemented.');
   }
 
+  private serverUrl: String = 'http://localhost:3000';
+
+  constructor(
+    private _httpp: HttpClient,
+  ){}
+
 
   setTitle(index: number, item: ToDo) {
     todoliste[index].title = item.title;
   }
 
 
-  getToDoList(): Observable<ToDo[]> {
-    const list = of(todoliste);
-    return list;
+  public getToDoList(): Observable<ToDo[]> {
+    const httpOptions =  {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this._httpp.get<ToDo[]>(this.serverUrl + '/todoliste');
   }
 
   removeToDoList(index: number) {
@@ -30,6 +41,28 @@ export class TodoListService {
 
   addToDoList(item: ToDo) {
     todoliste.push(item);
+  }
+
+  changeCompleted(index: number) {
+    todoliste[index].completed = !todoliste[index].completed;
+    if (todoliste[index].completed) {
+      todoliste[index].important = false;
+      todoliste[index].urgent = false;
+    }
+  }
+
+  changeUrgent(index: number){
+    todoliste[index].urgent = !todoliste[index].urgent;
+    if(todoliste[index].urgent && todoliste[index].completed){
+      todoliste[index].completed = false;
+    }
+  }
+
+  changeImportant(index: number){
+    todoliste[index].important = !todoliste[index].important;
+    if(todoliste[index].important && todoliste[index].important){
+      todoliste[index].completed = false;
+    }
   }
 
 
@@ -98,7 +131,7 @@ export class TodoListService {
     })
   }
 
-  sortByImportant(){
+  sortByImportant() {
     todoliste.sort((n1, n2) => {
       if (n1.important < n2.important) {
         return 1;

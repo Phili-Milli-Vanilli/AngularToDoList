@@ -33,6 +33,7 @@ export class AddTodolistComponent implements OnInit {
     urgent: false,
     important: false,
     targetDate: 0,
+    id: undefined,
   }
 
 

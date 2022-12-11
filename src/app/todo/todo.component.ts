@@ -32,6 +32,19 @@ export class TodoComponent {
     targetDate: 0,
   };
 
+  changeCompleted(index: number){
+    this.todoListService.changeCompleted(index);
+  }
+
+  changeUrgent(index: number){
+    this.todoListService.changeUrgent(index);
+  }
+
+  changeImportant(index: number){
+    this.todoListService.changeImportant(index);
+  }
+
+
   ngOnInit(): void {
     this.getToDoList();
   }
