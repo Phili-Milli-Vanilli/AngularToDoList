@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ToDo } from '../todo';
 import { TodoListService } from '../todo-list.service';
 import { TodoListComponent } from '../todo-list/todo-list.component';
@@ -20,6 +21,8 @@ export class TodoComponent {
   canEdit: Boolean = false;
 
   ngOnInit(): void { }
+
+  @Input() todo$ = new Observable<ToDo[]>();
 
   @Input() index: number = 0;
 

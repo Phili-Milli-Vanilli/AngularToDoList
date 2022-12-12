@@ -1,13 +1,3 @@
 {
-  "todoliste": [
-    {
-      "title": "Phil",
-      "description": "",
-      "completed": false,
-      "urgent": false,
-      "important": false,
-      "targetDate": 0,
-      "id": 1
-    }
-  ]
+  "todoliste": []
 }

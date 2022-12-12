@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ToDo } from '../todo';
 import { TodoListService } from '../todo-list.service';
 
@@ -11,11 +11,14 @@ import { TodoListService } from '../todo-list.service';
 export class TodoListComponent implements OnInit {
 
 
+  todo$ = new Observable<ToDo[]>();
   
-  
+
   constructor(
     private todoListService: TodoListService,
-    ){}
+    ){
+      this.todo$ = todoListService.getToDoList();
+    }
 
   todolist: ToDo [] = [];
   canEdit: Boolean = false;
