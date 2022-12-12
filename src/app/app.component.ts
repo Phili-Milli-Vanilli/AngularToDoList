@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTodolistComponent } from './add-todolist/add-todolist.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ToDo-Liste';
+
+  constructor(private dialogRef: MatDialog){}
+
+  openAddToDo(){
+    this.dialogRef.open(AddTodolistComponent);
+  }
 }

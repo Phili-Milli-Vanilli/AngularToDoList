@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TodoComponent } from './todo/todo.component';
 import { HttpClientModule, HttpClient} from '@angular/common/http';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HttpClientModule, HttpClient} from '@angular/common/http';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

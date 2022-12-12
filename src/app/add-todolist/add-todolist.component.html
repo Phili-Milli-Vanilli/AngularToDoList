@@ -1,20 +1,23 @@
-<button type="button" (click)="goBack()">Zurück</button>
+<body>
+    <h2>ToDo Hinzufügen: </h2>
+    <div>
 
-<p>add-todolist works!{{todo.targetDate}}{{todo.targetDate}}</p>
+        <input class="text" id="title" name="title" placeholder="Titel..." [(ngModel)]="todo.title">
+        <input class="text" id="description" name="description" placeholder="Beschreibung..."
+            [(ngModel)]="todo.description">
 
-<div>
-    <input id="title" name="title" placeholder="Titel..." [(ngModel)]="todo.title">    
-    <br>
-    <input id="description" name="description" placeholder="Beschreibung..." [(ngModel)]="todo.description">
-    <br>
-    
-    <label for="urgent">Dringend?</label>
-    <input type="checkbox" name="urgent" id="urgent" [(ngModel)]="todo.urgent">
+        <label for="urgent">Dringend?</label>
+        <input type="checkbox" name="urgent" id="urgent" [(ngModel)]="todo.urgent">
 
-    <label for="important">Wichtig?</label>
-    <input type="checkbox" name="important" id="important" [(ngModel)]="todo.important">
+        <label for="important">Wichtig?</label>
+        <input type="checkbox" name="important" id="important" [(ngModel)]="todo.important">
 
-    <input type="date" name="targetDate" id="targetDate" [(ngModel)]="todo.targetDate">
-    
-    <button type="button" (click)="addToDoList()">Bestätigen</button>
-</div>
+        <label for="targetDate"> Deadline: </label>
+        <input type="date" name="targetDate" id="targetDate" [(ngModel)]="todo.targetDate">
+
+        <br>
+        <button type="button" (click)="closeAddToDo()">Zurück</button>
+        <button type="button" (click)="closeAddToDo()" (click)="addToDoList()">Bestätigen</button>
+    </div>
+
+</body>

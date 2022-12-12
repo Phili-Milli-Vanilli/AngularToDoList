@@ -8,7 +8,8 @@ export const todoliste: ToDo[] = [
     description:"",
     important:false,
     targetDate: 20221215,
-    urgent:false
+    urgent:false,
+    id: 0,
   },
   {
     title: 'Phil 31.12',
@@ -17,6 +18,7 @@ export const todoliste: ToDo[] = [
     urgent: false,
     important: true,
     targetDate: 20221231,
+    id: 1,
   },
   {
     title: 'Phil Januar',
@@ -25,6 +27,7 @@ export const todoliste: ToDo[] = [
     urgent: false,
     important: true,
     targetDate: 202301115,
+    id: 2,
   },
   {
     title: 'Telekom',
@@ -33,6 +36,7 @@ export const todoliste: ToDo[] = [
     urgent: false,
     important: false,
     targetDate: 20221220,
+    id: 3,
   },
   {
     title: 'Telekeom',
@@ -41,6 +45,7 @@ export const todoliste: ToDo[] = [
     urgent: false,
     important: false,
     targetDate: 20221225,
+    id: 4,
   },
   {
     title: 'Phil',
@@ -49,6 +54,7 @@ export const todoliste: ToDo[] = [
     urgent: false,
     important: false,
     targetDate: 20221222,
+    id: 5,
   }
 
 ];

@@ -3,7 +3,7 @@ div.button{
 }
 
 button{
-    background-color: #f5d598       ;
+    background-color: #f5d598;
     color: #3d3d3d;
     padding: 0.8rem;
     margin-top: 5px;
@@ -30,3 +30,4 @@ button:active{
 li {
     list-style-type: none;
 }
+

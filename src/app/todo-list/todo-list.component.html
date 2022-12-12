@@ -4,11 +4,12 @@
     <button type="button" (click)="sortByCompleted()">sortByCompleted</button>
     <button type="button" (click)="sortByUrgent()">sortByUrgent</button>
     <button type="button" (click)="sortByImportant()">sortByImportant</button>
+    <button type="button" (click)="getToDoList()">Refresh</button>
 </div>
 
 <ul>
     <div class="list">
-        <li *ngFor="let todo of todolist, let i=index">
+        <li *ngFor="let todo of todolist; let i=index">
 
             <app-todo [todo]="todo" [index]="i"></app-todo>
 

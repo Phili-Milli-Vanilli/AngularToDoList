@@ -25,7 +25,7 @@ export class TodoListService {
     todoliste[index].title = item.title;
   }
 
-
+  //Get Abfrage an den JSON Server
   public getToDoList(): Observable<ToDo[]> {
     const httpOptions =  {
       headers: new HttpHeaders({
@@ -35,13 +35,29 @@ export class TodoListService {
     return this._httpp.get<ToDo[]>(this.serverUrl + '/todoliste');
   }
 
-  removeToDoList(index: number) {
-    todoliste.splice(index, 1);
+  //Post Abfrage an den JSON Server
+  addToDoList(item: ToDo): Observable<ToDo[]>{
+    const httpOptions =  {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this._httpp.post<ToDo[]>(this.serverUrl + '/todoliste', item);
   }
 
-  addToDoList(item: ToDo) {
-    todoliste.push(item);
+  //Delete Abfrage an den JSON Server
+  removeToDoList(item: ToDo) {
+    this.getToDoList();
+    const httpOptions =  {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    console.log(item.id);
+    return this._httpp.delete<ToDo[]>(this.serverUrl + '/todoliste/' + item.id)
   }
+
+
 
   changeCompleted(index: number) {
     todoliste[index].completed = !todoliste[index].completed;

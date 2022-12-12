@@ -1,8 +1,7 @@
 <nav>
     <p>{{title}}</p>
-    <a routerLink="add">Hinzufügen</a>
+    <a (click)="openAddToDo()">Hinzufügen</a>
     <a routerLink="dashboard">Dashboard</a>
     <a routerLink="todolist">ToDoListe</a>
-    <a routerLink="testlist">TestList</a>
 </nav>
 <router-outlet></router-outlet>

@@ -3,6 +3,7 @@ import { ToDo } from '../todo';
 import { todoliste } from '../mock-todoliste';
 import { TodoListService } from '../todo-list.service';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -17,8 +18,9 @@ export class AddTodolistComponent implements OnInit {
 
   constructor(
 
-    private toDolistSerive: TodoListService,
+    private todoListService: TodoListService,
     private location: Location,
+    private dialogRef: MatDialog,
 
   ) { }
 
@@ -36,11 +38,11 @@ export class AddTodolistComponent implements OnInit {
     id: undefined,
   }
 
-
   liste: ToDo[] = [];
 
   addToDoList() {
-    this.toDolistSerive.addToDoList(this.todo);
+    this.todoListService.addToDoList(this.todo)
+      .subscribe();
     this.resetToDo();
     alert("zur Liste hinzugefügt!");
     console.log(todoliste);
@@ -48,6 +50,10 @@ export class AddTodolistComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  closeAddToDo(){
+    this.dialogRef.closeAll();
   }
 
   resetToDo() {

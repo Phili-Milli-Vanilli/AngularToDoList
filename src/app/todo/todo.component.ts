@@ -1,8 +1,7 @@
-import { Component, Input, ɵisListLikeIterable } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ToDo } from '../todo';
-import { todoliste } from '../mock-todoliste';
 import { TodoListService } from '../todo-list.service';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { TodoListComponent } from '../todo-list/todo-list.component';
 
 
 @Component({
@@ -15,11 +14,12 @@ export class TodoComponent {
 
   constructor(
     private todoListService: TodoListService,
+    private todoListCompoment: TodoListComponent,
   ) { }
 
-  todolist: ToDo[] = [];
   canEdit: Boolean = false;
 
+  ngOnInit(): void { }
 
   @Input() index: number = 0;
 
@@ -32,35 +32,25 @@ export class TodoComponent {
     targetDate: 0,
   };
 
-  changeCompleted(index: number){
+  removeToDoList(item: ToDo) {
+    this.todoListService.removeToDoList(item)
+      .subscribe();
+  }
+
+  changeCompleted(index: number) {
     this.todoListService.changeCompleted(index);
   }
 
-  changeUrgent(index: number){
+  changeUrgent(index: number) {
     this.todoListService.changeUrgent(index);
   }
 
-  changeImportant(index: number){
+  changeImportant(index: number) {
     this.todoListService.changeImportant(index);
-  }
-
-
-  ngOnInit(): void {
-    this.getToDoList();
   }
 
   onEditClick(index: number, item: ToDo) {
     this.canEdit = !this.canEdit;
     this.todoListService.setTitle(index, item);
-  }
-
-  getToDoList() {
-    this.todoListService.getToDoList()
-      .subscribe(todoliste => this.todolist = todoliste);
-  }
-
-  removeToDoList(index: number) {
-    this.todoListService.removeToDoList(index);
-    this.getToDoList();
   }
 }

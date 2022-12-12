@@ -1,9 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { todoliste } from '../mock-todoliste';
+import { Observable } from 'rxjs';
 import { ToDo } from '../todo';
 import { TodoListService } from '../todo-list.service';
-import { AddTodolistComponent } from '../add-todolist/add-todolist.component';
-import { Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,6 +11,8 @@ import { Subscription} from 'rxjs';
 export class TodoListComponent implements OnInit {
 
 
+  
+  
   constructor(
     private todoListService: TodoListService,
     ){}
@@ -34,14 +34,16 @@ export class TodoListComponent implements OnInit {
   //     this.todolist = data;
   //   }, error => {
   //     console.log('%cERROR: ${error.message}', 'color: red; front-size: 12px;');
-  //   });
+  //   }); 
   // }
 
-  onEditClick(index: number, item: ToDo){
-    this.canEdit = !this.canEdit;
-    this.todoListService.setTitle(index, item);
-  }
+  // onEditClick(index: number, item: ToDo){
+  //   this.canEdit = !this.canEdit;
+  //   this.todoListService.setTitle(index, item);
+  // }
 
+
+  //Post Anfrage
   getToDoList() {
     this.todoListService.getToDoList()
     .subscribe(todoliste => this.todolist = todoliste);
@@ -51,11 +53,6 @@ export class TodoListComponent implements OnInit {
   //   this.input = inputtext;
   //   console.log(this.todolist);
   // }
-
-  removeToDoList(index: number){
-    this.todoListService.removeToDoList(index);
-    this.getToDoList();
-  }
 
   // addToDoList(inputtext: String){
   //   this.todoListService.addToDoList(inputtext);
