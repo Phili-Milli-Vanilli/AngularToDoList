@@ -38,14 +38,10 @@ export class AddTodolistComponent implements OnInit {
     id: undefined,
   }
 
-  liste: ToDo[] = [];
-
   addToDoList() {
     this.todoListService.addToDoList(this.todo)
       .subscribe();
     this.resetToDo();
-    alert("zur Liste hinzugefügt!");
-    console.log(todoliste);
   }
 
   goBack(): void {

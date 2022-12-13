@@ -17,25 +17,25 @@
 
 
             <span *ngIf="todo.completed === true" class="checked">
-                <button type="button" class="boolean" (click)="changeCompleted(index)">Fertig:</button>
+                <button type="button" class="boolean" (click)="changeCompleted(todo)">Fertig:</button>
             </span>
             <span *ngIf="todo.completed === false" class="crossed">
-                <button type="button" class="boolean" (click)="changeCompleted(index)">Fertig:</button>
+                <button type="button" class="boolean" (click)="changeCompleted(todo)">Fertig:</button>
             </span>
 
 
             <span *ngIf="todo.urgent === true" class="checked">
-                <button type="button" class="boolean" (click)="changeUrgent(index)">Dringend:</button>
+                <button type="button" class="boolean" (click)="changeUrgent(todo)">Dringend:</button>
             </span>
             <span *ngIf="todo.urgent === false" class="crossed">
-                <button type="button" class="boolean" (click)="changeUrgent(index)">Dringend:</button>
+                <button type="button" class="boolean" (click)="changeUrgent(todo)">Dringend:</button>
             </span>
 
             <span *ngIf="todo.important === true" class="checked">
-                <button type="button" class="boolean" (click)="changeImportant(index)">Wichtig:</button>
+                <button type="button" class="boolean" (click)="changeImportant(todo)">Wichtig:</button>
             </span>
             <span *ngIf="todo.important === false" class="crossed">
-                <button type="button" class="boolean" (click)="changeImportant(index)">Wichtig:</button>
+                <button type="button" class="boolean" (click)="changeImportant(todo)">Wichtig:</button>
             </span>
 
             Deadline: {{todo.targetDate}}

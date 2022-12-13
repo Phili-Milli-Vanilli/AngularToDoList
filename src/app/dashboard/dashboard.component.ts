@@ -1,9 +1,7 @@
-import { Component, OnInit, ɵisListLikeIterable } from '@angular/core';
+import { Component, Input, OnInit,} from '@angular/core';
 import { ToDo } from '../todo';
 import { TodoListService } from '../todo-list.service';
-import { todoliste } from '../mock-todoliste';
-import { EMPTY, empty, Observable, of } from 'rxjs';
-import { TemplateBindingParseResult } from '@angular/compiler';
+import { Observable,} from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,20 +17,11 @@ export class DashboardComponent implements OnInit {
 
   topList: ToDo[] = [];
 
-  ngOnInit(): void {
-    this.getTopToDo();
-  }
+  ngOnInit(): void {}
 
-  getToDoList() {
-    this.todoListService.getToDoList()
-      .subscribe((todoliste => this.tempList = todoliste));
-  }
+  topList$: Observable<ToDo[]> = this.todoListService.getToDoList();
 
   removeToDoList(index: number) {
     this.topList.splice(index, 1);
-  }
-
-  getTopToDo() {
-    this.topList = this.todoListService.getTopToDo()
   }
 }

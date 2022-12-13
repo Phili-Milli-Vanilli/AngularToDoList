@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { NumberValueAccessor } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { todoliste } from './mock-todoliste';
 import { ToDo } from './todo';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,73 +16,78 @@ export class TodoListService {
 
   private serverUrl: String = 'http://localhost:3000';
 
+  todo$ = new BehaviorSubject<ToDo[]>([]);
+
   constructor(
     private _httpp: HttpClient,
-  ){}
-
-
-  setTitle(index: number, item: ToDo) {
-    todoliste[index].title = item.title;
-  }
+  ) {}
 
   //Get Abfrage an den JSON Server
   public getToDoList(): Observable<ToDo[]> {
-    const httpOptions =  {
+    const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
-    return this._httpp.get<ToDo[]>(this.serverUrl + '/todoliste');
+    this._httpp.get<ToDo[]>(this.serverUrl + '/todoliste').subscribe(data => this.todo$.next(data));
+    return this.todo$;
   }
 
   //Post Abfrage an den JSON Server
-  addToDoList(item: ToDo): Observable<ToDo[]>{
-    const httpOptions =  {
+  addToDoList(item: ToDo): Observable<ToDo[]> {
+    const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
-    return this._httpp.post<ToDo[]>(this.serverUrl + '/todoliste', item);
+    return this._httpp.post<ToDo[]>(this.serverUrl + '/todoliste', item).pipe(tap(() => this.getToDoList()));;
   }
 
   //Delete Abfrage an den JSON Server
   removeToDoList(item: ToDo) {
     this.getToDoList();
-    const httpOptions =  {
+    const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
-    console.log(item.id);
-    return this._httpp.delete<ToDo[]>(this.serverUrl + '/todoliste/' + item.id)
+    return this._httpp.delete<ToDo[]>(this.serverUrl + '/todoliste/' + item.id).pipe(tap(() => this.getToDoList()));
   }
 
+  // getTopList(): Observable<ToDo[]>{
+  //   return this._httpp.get<ToDo[]>(this.serverUrl + '/todoliste').pipe(tap(() => this.getTopToDo()));
+  // }
 
 
-  changeCompleted(index: number) {
-    todoliste[index].completed = !todoliste[index].completed;
-    if (todoliste[index].completed) {
-      todoliste[index].important = false;
-      todoliste[index].urgent = false;
+
+  changeCompleted(item: ToDo): Observable<ToDo[]> {
+    item.completed = !item.completed;
+    if (item.completed) {
+      item.important = false;
+      item.urgent = false;
     }
+    console.log(item);
+    return this._httpp.put<ToDo[]>(this.serverUrl + '/todoliste/' + item.id, item).pipe(tap(() => this.getToDoList()));
   }
 
-  changeUrgent(index: number){
-    todoliste[index].urgent = !todoliste[index].urgent;
-    if(todoliste[index].urgent && todoliste[index].completed){
-      todoliste[index].completed = false;
+  changeUrgent(item: ToDo) {
+    item.urgent = !item.urgent;
+    if (item.urgent && item.completed) {
+      item.completed = false;
     }
+    return this._httpp.put<ToDo[]>(this.serverUrl + '/todoliste/' + item.id, item).pipe(tap(() => this.getToDoList()));
   }
 
-  changeImportant(index: number){
-    todoliste[index].important = !todoliste[index].important;
-    if(todoliste[index].important && todoliste[index].important){
-      todoliste[index].completed = false;
+  changeImportant(item: ToDo) {
+    item.important = !item.important;
+    if (item.important || item.urgent) {
+      item.completed = false;
     }
+    return this._httpp.put<ToDo[]>(this.serverUrl + '/todoliste/' + item.id, item).pipe(tap(() => this.getToDoList()));
   }
 
 
-  getTopToDo() {
+  getTopToDo(todoliste: ToDo[]) {
     var list: ToDo[] = [];
     this.getToDoList();
     this.sortByDate();
@@ -101,7 +106,6 @@ export class TodoListService {
         }
       }
     }
-    return list;
   }
 
 

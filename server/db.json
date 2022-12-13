@@ -1,3 +1,22 @@
 {
-  "todoliste": []
+  "todoliste": [
+    {
+      "title": "",
+      "description": "",
+      "completed": false,
+      "urgent": true,
+      "important": true,
+      "targetDate": 0,
+      "id": 1
+    },
+    {
+      "title": "",
+      "description": "",
+      "completed": true,
+      "urgent": false,
+      "important": false,
+      "targetDate": 0,
+      "id": 2
+    }
+  ]
 }

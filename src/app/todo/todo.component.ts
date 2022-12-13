@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ToDo } from '../todo';
 import { TodoListService } from '../todo-list.service';
 import { TodoListComponent } from '../todo-list/todo-list.component';
@@ -22,8 +21,6 @@ export class TodoComponent {
 
   ngOnInit(): void { }
 
-  @Input() todo$ = new Observable<ToDo[]>();
-
   @Input() index: number = 0;
 
   @Input() todo: ToDo = {
@@ -40,20 +37,18 @@ export class TodoComponent {
       .subscribe();
   }
 
-  changeCompleted(index: number) {
-    this.todoListService.changeCompleted(index);
+  changeCompleted(item: ToDo) {
+    this.todoListService.changeCompleted(item)
+      .subscribe();
   }
 
-  changeUrgent(index: number) {
-    this.todoListService.changeUrgent(index);
+  changeUrgent(item: ToDo) {
+    this.todoListService.changeUrgent(item)
+    .subscribe();
   }
 
-  changeImportant(index: number) {
-    this.todoListService.changeImportant(index);
-  }
-
-  onEditClick(index: number, item: ToDo) {
-    this.canEdit = !this.canEdit;
-    this.todoListService.setTitle(index, item);
+  changeImportant(item: ToDo) {
+    this.todoListService.changeImportant(item)
+    .subscribe();
   }
 }

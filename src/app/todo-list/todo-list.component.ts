@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ToDo } from '../todo';
 import { TodoListService } from '../todo-list.service';
 
@@ -10,24 +10,16 @@ import { TodoListService } from '../todo-list.service';
 })
 export class TodoListComponent implements OnInit {
 
-
-  todo$ = new Observable<ToDo[]>();
   
 
   constructor(
     private todoListService: TodoListService,
-    ){
-      this.todo$ = todoListService.getToDoList();
-    }
+    ){}
 
-  todolist: ToDo [] = [];
-  canEdit: Boolean = false;
+  todolist$: Observable<ToDo[]> = this.todoListService.getToDoList();
 
   
-  ngOnInit(): void{
-    //this.loadData();
-    this.getToDoList();
-  }
+  ngOnInit(): void{}
 
 
   // //Lädt Einträge aus der Json
@@ -44,13 +36,6 @@ export class TodoListComponent implements OnInit {
   //   this.canEdit = !this.canEdit;
   //   this.todoListService.setTitle(index, item);
   // }
-
-
-  //Post Anfrage
-  getToDoList() {
-    this.todoListService.getToDoList()
-    .subscribe(todoliste => this.todolist = todoliste);
-  }
 
   // setInput(inputtext: String){
   //   this.input = inputtext;
