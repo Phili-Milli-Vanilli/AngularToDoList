@@ -10,61 +10,33 @@ import { TodoListService } from '../todo-list.service';
 })
 export class TodoListComponent implements OnInit {
 
-  
+
 
   constructor(
     private todoListService: TodoListService,
-    ){}
+  ) { }
 
+  todoliste: ToDo[] = [];
   todolist$: Observable<ToDo[]> = this.todoListService.getToDoList();
 
-  
-  ngOnInit(): void{}
 
 
-  // //Lädt Einträge aus der Json
-  // loadData(): void {
-  //   this.todolist = [];
-  //   this.todoListService.getToDoList().subscribe((data: ToDo[]) => {
-  //     this.todolist = data;
-  //   }, error => {
-  //     console.log('%cERROR: ${error.message}', 'color: red; front-size: 12px;');
-  //   }); 
-  // }
+  ngOnInit(): void {
+  }
 
-  // onEditClick(index: number, item: ToDo){
-  //   this.canEdit = !this.canEdit;
-  //   this.todoListService.setTitle(index, item);
-  // }
-
-  // setInput(inputtext: String){
-  //   this.input = inputtext;
-  //   console.log(this.todolist);
-  // }
-
-  // addToDoList(inputtext: String){
-  //   this.todoListService.addToDoList(inputtext);
-  //   this.getToDoList();
-  // }
-
-  // clearList(){
-  //   this.todoListService.clearList();
-  //   this.getToDoList();
-  // }
-
-  sortByDate(){
+  sortByDate() {
     this.todoListService.sortByDate();
   }
 
-  sortByCompleted(){
+  sortByCompleted() {
     this.todoListService.sortByCompleted();
   }
 
-  sortByUrgent(){
+  sortByUrgent() {
     this.todoListService.sortByUrgent();
   }
 
-  sortByImportant(){
+  sortByImportant() {
     this.todoListService.sortByImportant();
   }
 }

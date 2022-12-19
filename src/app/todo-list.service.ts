@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NumberValueAccessor } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';
-import { todoliste } from './mock-todoliste';
 import { ToDo } from './todo';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -21,6 +18,11 @@ export class TodoListService {
   constructor(
     private _httpp: HttpClient,
   ) {}
+
+  public getToDo$(){
+    return this.todo$;
+  }
+
 
   //Get Abfrage an den JSON Server
   public getToDoList(): Observable<ToDo[]> {
@@ -66,7 +68,6 @@ export class TodoListService {
       item.important = false;
       item.urgent = false;
     }
-    console.log(item);
     return this._httpp.put<ToDo[]>(this.serverUrl + '/todoliste/' + item.id, item).pipe(tap(() => this.getToDoList()));
   }
 
@@ -106,10 +107,14 @@ export class TodoListService {
         }
       }
     }
+    return list;
   }
 
 
   sortByDate() {
+    var todoliste: ToDo[] = [];
+    this.getToDoList().subscribe(list => todoliste);
+
     todoliste.sort((n1, n2) => {
       if (n1.targetDate > n2.targetDate) {
         return 1;
@@ -124,6 +129,8 @@ export class TodoListService {
   }
 
   sortByCompleted() {
+
+    var todoliste: ToDo[] = [];
     todoliste.sort((n1, n2) => {
       if (n1.completed < n2.completed) {
         return 1;
@@ -138,6 +145,7 @@ export class TodoListService {
   }
 
   sortByUrgent() {
+    var todoliste: ToDo[] = [];
     todoliste.sort((n1, n2) => {
       if (n1.urgent < n2.urgent) {
         return 1;
@@ -152,6 +160,7 @@ export class TodoListService {
   }
 
   sortByImportant() {
+    var todoliste: ToDo[] = [];
     todoliste.sort((n1, n2) => {
       if (n1.important < n2.important) {
         return 1;

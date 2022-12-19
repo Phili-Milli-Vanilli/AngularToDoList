@@ -1,6 +1,6 @@
 <ul>
     <div class="list">
-        <li *ngFor="let todo of topList$ | async; let i = index">
+        <li *ngFor="let todo of todolist$ | async; let i = index">
             <app-todo [todo]="todo" [index]="i"></app-todo>
         </li>
     </div>
