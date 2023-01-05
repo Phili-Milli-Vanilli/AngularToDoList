@@ -14,7 +14,6 @@ export class TodoComponent {
 
   constructor(
     private todoListService: TodoListService,
-    private todoListCompoment: TodoListComponent,
   ) { }
 
   canEdit: Boolean = false;

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { ToDo } from '../todo';
 import { TodoListService } from '../todo-list.service';
 
@@ -16,8 +16,11 @@ export class TodoListComponent implements OnInit {
     private todoListService: TodoListService,
   ) { }
 
-  todoliste: ToDo[] = [];
+
+
   todolist$: Observable<ToDo[]> = this.todoListService.getToDoList();
+
+  sortedToDoList$: Observable<ToDo[]> = this.todolist$;
 
 
 
@@ -25,18 +28,30 @@ export class TodoListComponent implements OnInit {
   }
 
   sortByDate() {
-    this.todoListService.sortByDate();
+    this.sortedToDoList$ = this.todolist$
+      .pipe(
+        map(this.todoListService.sortByDate
+        ));
   }
 
   sortByCompleted() {
-    this.todoListService.sortByCompleted();
+    this.sortedToDoList$ = this.todolist$
+      .pipe(
+        map(this.todoListService.sortByCompleted
+        ));
   }
 
   sortByUrgent() {
-    this.todoListService.sortByUrgent();
+    this.sortedToDoList$ = this.todolist$
+      .pipe(
+        map(this.todoListService.sortByUrgent
+        ));
   }
 
   sortByImportant() {
-    this.todoListService.sortByImportant();
+    this.sortedToDoList$ = this.todolist$
+      .pipe(
+        map(this.todoListService.sortByImportant
+        ));
   }
 }

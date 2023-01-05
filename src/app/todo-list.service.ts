@@ -16,12 +16,14 @@ export class TodoListService {
   todo$ = new BehaviorSubject<ToDo[]>([]);
 
   constructor(
-    private _httpp: HttpClient,
+    private _http: HttpClient,
   ) {}
 
   public getToDo$(){
     return this.todo$;
   }
+
+
 
 
   //Get Abfrage an den JSON Server
@@ -31,18 +33,18 @@ export class TodoListService {
         'Content-Type': 'application/json'
       })
     }
-    this._httpp.get<ToDo[]>(this.serverUrl + '/todoliste').subscribe(data => this.todo$.next(data));
+    this._http.get<ToDo[]>(this.serverUrl + '/todoliste').subscribe(data => this.todo$.next(data));
     return this.todo$;
   }
 
   //Post Abfrage an den JSON Server
-  addToDoList(item: ToDo): Observable<ToDo[]> {
+  addToDoList(item: ToDo): Observable<ToDo> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
-    return this._httpp.post<ToDo[]>(this.serverUrl + '/todoliste', item).pipe(tap(() => this.getToDoList()));;
+    return this._http.post<ToDo>(this.serverUrl + '/todoliste', item).pipe(tap((createdToDo) => this.todo$.next([...this.todo$.value, createdToDo])));
   }
 
   //Delete Abfrage an den JSON Server
@@ -53,13 +55,8 @@ export class TodoListService {
         'Content-Type': 'application/json'
       })
     }
-    return this._httpp.delete<ToDo[]>(this.serverUrl + '/todoliste/' + item.id).pipe(tap(() => this.getToDoList()));
+    return this._http.delete<ToDo[]>(this.serverUrl + '/todoliste/' + item.id).pipe(tap(() => this.getToDoList()));
   }
-
-  // getTopList(): Observable<ToDo[]>{
-  //   return this._httpp.get<ToDo[]>(this.serverUrl + '/todoliste').pipe(tap(() => this.getTopToDo()));
-  // }
-
 
 
   changeCompleted(item: ToDo): Observable<ToDo[]> {
@@ -68,7 +65,7 @@ export class TodoListService {
       item.important = false;
       item.urgent = false;
     }
-    return this._httpp.put<ToDo[]>(this.serverUrl + '/todoliste/' + item.id, item).pipe(tap(() => this.getToDoList()));
+    return this._http.put<ToDo[]>(this.serverUrl + '/todoliste/' + item.id, item).pipe(tap(() => this.getToDoList()));
   }
 
   changeUrgent(item: ToDo) {
@@ -76,7 +73,7 @@ export class TodoListService {
     if (item.urgent && item.completed) {
       item.completed = false;
     }
-    return this._httpp.put<ToDo[]>(this.serverUrl + '/todoliste/' + item.id, item).pipe(tap(() => this.getToDoList()));
+    return this._http.put<ToDo[]>(this.serverUrl + '/todoliste/' + item.id, item).pipe(tap(() => this.getToDoList()));
   }
 
   changeImportant(item: ToDo) {
@@ -84,93 +81,54 @@ export class TodoListService {
     if (item.important || item.urgent) {
       item.completed = false;
     }
-    return this._httpp.put<ToDo[]>(this.serverUrl + '/todoliste/' + item.id, item).pipe(tap(() => this.getToDoList()));
+    return this._http.put<ToDo[]>(this.serverUrl + '/todoliste/' + item.id, item).pipe(tap(() => this.getToDoList()));
   }
 
-
-  getTopToDo(todoliste: ToDo[]) {
-    var list: ToDo[] = [];
-    this.getToDoList();
-    this.sortByDate();
-
-    for (let i = 0; i < todoliste.length; i++) {
-      if (list.length < 3) {
-        if (todoliste[i].important == true && todoliste[i].completed != true || todoliste[i].urgent == true) {
-          list.push(todoliste[i]);
-        }
-      }
+  sortByDate = (todoliste: ToDo[])=> todoliste.sort((n1, n2) => {
+    if (n1.targetDate < n2.targetDate) {
+      return -1;
     }
-    for (let i = 0; i < todoliste.length; i++) {
-      if (list.length < 3) {
-        if (todoliste[i].important !== true) {
-          list.push(todoliste[i]);
-        }
-      }
+
+    if (n1.targetDate > n2.targetDate) {
+      return 1;
     }
-    return list;
+
+    return 0;
+  })
+
+  sortByCompleted = (todoliste: ToDo[])=> todoliste.sort((n1, n2) => {
+    if (n1.completed < n2.completed) {
+      return 1;
+    }
+
+    if (n1.completed > n2.completed) {
+      return -1;
+    }
+
+    return 0;
+  })
+
+  sortByUrgent = (todoliste: ToDo[])=> todoliste.sort((n1, n2) => {
+    if (n1.urgent < n2.urgent) {
+      return 1;
+    }
+
+    if (n1.urgent > n2.urgent) {
+      return -1;
+    }
+
+    return 0;
+  })
+
+  sortByImportant = (todoliste: ToDo[])=> todoliste.sort((n1, n2) => {
+    if (n1.important < n2.important) {
+      return 1;
+    }
+
+    if (n1.important > n2.important) {
+      return -1;
+    }
+
+    return 0;
+  })
   }
-
-
-  sortByDate() {
-    var todoliste: ToDo[] = [];
-    this.getToDoList().subscribe(list => todoliste);
-
-    todoliste.sort((n1, n2) => {
-      if (n1.targetDate > n2.targetDate) {
-        return 1;
-      }
-
-      if (n1.targetDate < n2.targetDate) {
-        return -1;
-      }
-
-      return 0;
-    })
-  }
-
-  sortByCompleted() {
-
-    var todoliste: ToDo[] = [];
-    todoliste.sort((n1, n2) => {
-      if (n1.completed < n2.completed) {
-        return 1;
-      }
-
-      if (n1.completed > n2.completed) {
-        return -1;
-      }
-
-      return 0;
-    })
-  }
-
-  sortByUrgent() {
-    var todoliste: ToDo[] = [];
-    todoliste.sort((n1, n2) => {
-      if (n1.urgent < n2.urgent) {
-        return 1;
-      }
-
-      if (n1.urgent > n2.urgent) {
-        return -1;
-      }
-
-      return 0;
-    })
-  }
-
-  sortByImportant() {
-    var todoliste: ToDo[] = [];
-    todoliste.sort((n1, n2) => {
-      if (n1.important < n2.important) {
-        return 1;
-      }
-
-      if (n1.important > n2.important) {
-        return -1;
-      }
-
-      return 0;
-    })
-  }
-}
